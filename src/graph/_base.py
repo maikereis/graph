@@ -51,6 +51,33 @@ class Graph:
         if src_vertex in self.graph and dst_vertex in self.graph[src_vertex]:
             self.graph[src_vertex].remove(dst_vertex)
 
+    def add_vertex(self, vertex):
+        """
+        Add a `vertex` to graph.
+
+        Parameters
+        ----------
+        vertex : any hashable type
+            The vertex to be added.
+        """
+        if vertex not in self.graph:
+            self.graph[vertex] = []
+
+    def remove_vertex(self, vertex):
+        """
+        Remove a `vertex` from graph.
+
+        Parameters
+        ----------
+        vertex : any hashable type
+            The vertex to be removed.
+        """
+        if vertex in self.graph:
+            del self.graph[vertex]
+            for v in self.graph:
+                if vertex in self.graph[v]:
+                    self.graph[v].remove(vertex)
+
     def all_nodes(self):
         """Get all nodes in the graph.
 
