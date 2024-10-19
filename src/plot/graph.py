@@ -19,8 +19,8 @@ def plot_graph(graph, output_dir="./data"):
         )  # Background color of the node
 
     # Add edges with square arrowhead style
-    for node, edges in graph.items():
-        for edge in edges:
+    for node in graph.keys():
+        for edge in graph.get(node):
             dot.edge(
                 str(node),
                 str(edge),
