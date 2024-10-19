@@ -32,18 +32,24 @@ class Graph:
             The source vertex from which the edge starts.
         dst_vertex : any hashable type
             The destination vertex to which the edge points.
-        
-        Examples
-        --------
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> print(g.graph)
-        defaultdict(<class 'list'>, {0: [1, 2]})
         """
-        if src_vertex is None or dst_vertex is None:
-            return
+        if src_vertex not in self.graph:
+            self.graph[src_vertex] = []
         self.graph[src_vertex].append(dst_vertex)
+
+    def remove_edge(self, src_vertex, dst_vertex):
+        """
+        Remove a directed edge from `src_vertex` to `dst_vertex`.
+
+        Parameters
+        ----------
+        src_vertex : any hashable type
+            The source vertex from which the edge starts.
+        dst_vertex : any hashable type
+            The destination vertex to which the edge points.
+        """
+        if src_vertex in self.graph and dst_vertex in self.graph[src_vertex]:
+            self.graph[src_vertex].remove(dst_vertex)
 
     def all_nodes(self):
         """Get all nodes in the graph.
@@ -63,7 +69,8 @@ class Graph:
         >>> g.add_edge(0, 1)
         >>> g.add_edge(0, 2)
         >>> g.add_edge(1, 2)
+        >>> g.add_edge(1, 3)
         >>> g.all_nodes()
-        {0, 1, 2}
+        {0, 1, 2, 3}
         """
         return set(self.graph.keys()).union({edge for edges in self.graph.values() for edge in edges})
