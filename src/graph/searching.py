@@ -39,6 +39,10 @@ def dfs(G: Dict[str, List[str]], start_vertex: str) -> Set[str]:
     >>> dfs(G, 'A')
     {'A', 'B', 'C', 'D', 'E', 'F'}
     """
+
+    if start_vertex not in G.keys():
+        return set()
+
     S = deque()
     discovered = set()
     discovered.add(start_vertex)  # Label as discovered
@@ -56,3 +60,4 @@ def dfs(G: Dict[str, List[str]], start_vertex: str) -> Set[str]:
             # If there are no more vertices, pop the stack
             S.pop()
     return discovered
+

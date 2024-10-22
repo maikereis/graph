@@ -63,8 +63,8 @@ class Graph:
         dst_vertex : any hashable type
             The destination vertex to which the edge points.
         """
-        if src_vertex not in self._graph:
-            self._graph[src_vertex] = []
+        self.add_vertex(src_vertex)
+        self.add_vertex(dst_vertex)
         self._graph[src_vertex].append(dst_vertex)
 
     def remove_edge(self, src_vertex, dst_vertex):
